@@ -54,6 +54,19 @@ public class ContaServiceImpl implements ContaService {
         var conta = contaRepository.findById(id).orElseThrow();
         contaRepository.deleteById(id);
         return new ContaResponse(conta);
-
     }
+
+    @Override
+    public List<ContaResponse> getByUsuarioCpf(String cpf) {
+        var contas = contaRepository.findByUsuario_cpf(cpf);
+        return ContaResponse.toResponse(contas);
+    }
+
+    @Override
+    public List<ContaResponse> findByAgenciaAndUsuario_cpf(Integer agencia, String cpf) {
+        var contas = contaRepository.findByAgenciaAndUsuario_cpf(agencia, cpf);
+        return ContaResponse.toResponse(contas);
+    }
+
+
 }
