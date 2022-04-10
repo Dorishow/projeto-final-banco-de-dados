@@ -43,4 +43,14 @@ public class ContaController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     ContaResponse deleteById(@PathVariable Integer id) { return contaService.deleteById(id); }
+
+    @GetMapping("/cpf_usuario/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    List<ContaResponse> getByUsuarioCpf(@PathVariable String cpf){ return contaService.getByUsuarioCpf(cpf); }
+
+    @GetMapping("/agencia_cpf/{agencia}/{cpf}")
+    @ResponseStatus(HttpStatus.OK)
+    List<ContaResponse> getByAgenciaAndCpf(@PathVariable Integer agencia, @PathVariable String cpf){
+        return contaService.findByAgenciaAndUsuario_cpf(agencia, cpf);
+    }
 }

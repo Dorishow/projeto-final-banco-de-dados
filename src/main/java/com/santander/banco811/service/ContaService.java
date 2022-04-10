@@ -12,4 +12,6 @@ public interface ContaService {
     ContaResponse updateById(Integer id, ContaRequest contaRequest);
     ContaResponse getById(Integer id);
     ContaResponse deleteById(Integer id);
+    List<ContaResponse> getByUsuarioCpf(String cpf);
+    List<ContaResponse> findByAgenciaAndUsuario_cpf(Integer agencia, String cpf);
 }
