@@ -9,4 +9,7 @@ import java.util.List;
 public interface ContaService {
     List<ContaResponse> getAll();
     ContaResponse create(ContaRequest contaRequest);
+    ContaResponse updateById(Integer id, ContaRequest contaRequest);
+    ContaResponse getById(Integer id);
+    ContaResponse deleteById(Integer id);
 }

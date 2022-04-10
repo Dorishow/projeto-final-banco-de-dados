@@ -34,4 +34,26 @@ public class ContaServiceImpl implements ContaService {
         contaRepository.save(conta);
         return new ContaResponse(conta);
     }
+
+    @Override
+    public ContaResponse updateById(Integer id, ContaRequest contaRequest) {
+        var conta = contaRepository.findById(id).orElseThrow();
+        var usuario = usuarioService.findById(contaRequest.getIdUsuario());
+        conta.updateConta(contaRequest, usuario);
+        return new ContaResponse(contaRepository.save(conta));
+    }
+
+    @Override
+    public ContaResponse getById(Integer id) {
+        var conta = contaRepository.findById(id).orElseThrow();
+        return new ContaResponse(conta);
+    }
+
+    @Override
+    public ContaResponse deleteById(Integer id) {
+        var conta = contaRepository.findById(id).orElseThrow();
+        contaRepository.deleteById(id);
+        return new ContaResponse(conta);
+
+    }
 }

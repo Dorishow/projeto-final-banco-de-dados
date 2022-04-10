@@ -43,19 +43,23 @@ public class UsarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioResponse deleteById(Integer id) {
         var usuario = findById(id);
-        var usuarioResponse = new UsuarioResponse(usuario);
         usuarioRepository.deleteById(id);
-        return usuarioResponse;
+        return new UsuarioResponse(usuario);
     }
 
     @Override
     public UsuarioResponse updateById(Integer id, UsuarioRequest usuarioRequest) {
         var usuario = findById(id);
-        usuario.setNome(usuarioRequest.getNome());
-        usuario.setSenha(usuarioRequest.getSenha());
-        usuario.setCpf(usuarioRequest.getCpf());
-        var usuarioResponse = new UsuarioResponse(usuario);
+        usuario.updateUsuario(usuarioRequest);
         usuarioRepository.save(usuario);
+        var usuarioResponse = new UsuarioResponse(usuario);
         return usuarioResponse;
+    }
+
+    @Override
+    public List<UsuarioResponse> getUserByNome(String nome) {
+        return UsuarioResponse.toResponse(
+                usuarioRepository.findByNome(nome)
+        );
     }
 }
