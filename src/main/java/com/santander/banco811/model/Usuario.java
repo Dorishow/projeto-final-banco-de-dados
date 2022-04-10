@@ -1,6 +1,7 @@
 package com.santander.banco811.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.santander.banco811.dto.conta.ContaRequest;
 import com.santander.banco811.dto.usuario.UsuarioRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,5 +49,15 @@ public class Usuario {
         this.nome = usuarioRequest.getNome();
         this.cpf = usuarioRequest.getCpf();
         this.senha = usuarioRequest.getSenha();
+    }
+
+    public Usuario updateUsuario(UsuarioRequest usuarioRequest){
+        if(usuarioRequest.getCpf() != null)
+            this.cpf = usuarioRequest.getCpf();
+        if(usuarioRequest.getSenha() != null)
+            this.senha = usuarioRequest.getSenha();
+        if(usuarioRequest.getNome() != null)
+            this.nome = usuarioRequest.getNome();
+        return this;
     }
 }

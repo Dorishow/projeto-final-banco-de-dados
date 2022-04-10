@@ -13,4 +13,5 @@ public interface UsuarioService {
     UsuarioResponse getUserById(Integer id);
     UsuarioResponse deleteById(Integer id);
     UsuarioResponse updateById(Integer id, UsuarioRequest usuarioRequest);
+    List<UsuarioResponse> getUserByNome(String nome);
 }

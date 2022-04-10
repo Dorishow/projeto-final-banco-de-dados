@@ -45,7 +45,7 @@ public class Conta {
     @Enumerated(EnumType.STRING)
     private TipoConta tipoConta;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 
@@ -54,5 +54,19 @@ public class Conta {
         this.agencia = contaRequest.getAgencia();
         this.saldo = contaRequest.getSaldo();
         this.tipoConta = contaRequest.getTipoConta();
+    }
+
+    public Conta updateConta(ContaRequest contaRequest, Usuario usuario){
+        if(usuario != null)
+            this.usuario = usuario;
+        if(contaRequest.getTipoConta() != null)
+            this.tipoConta = contaRequest.getTipoConta();
+        if(contaRequest.getAgencia() != null)
+            this.agencia = contaRequest.getAgencia();
+        if(contaRequest.getNumero() != null)
+            this.numero = contaRequest.getNumero();
+        if(contaRequest.getSaldo() != null)
+            this.saldo = contaRequest.getSaldo();
+        return this;
     }
 }

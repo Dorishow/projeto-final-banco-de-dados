@@ -29,6 +29,12 @@ public class UsuarioController {
         return usuarioService.getAll();
     }
 
+    @GetMapping("/nome/{nome}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UsuarioResponse> getByName(@PathVariable String nome){
+        return usuarioService.getUserByNome(nome);
+    }
+
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public UsuarioResponse getById(@PathVariable Integer id){

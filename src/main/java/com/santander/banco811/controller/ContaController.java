@@ -2,7 +2,6 @@ package com.santander.banco811.controller;
 
 import com.santander.banco811.dto.conta.ContaRequest;
 import com.santander.banco811.dto.conta.ContaResponse;
-import com.santander.banco811.model.Conta;
 import com.santander.banco811.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,4 +27,20 @@ public class ContaController {
     List<ContaResponse> getAll(){
         return contaService.getAll();
     }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    ContaResponse updateById(@PathVariable Integer id, @RequestBody ContaRequest contaRequest){
+        return contaService.updateById(id, contaRequest);
+    }
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    ContaResponse getById(@PathVariable Integer id){
+        return contaService.getById(id);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    ContaResponse deleteById(@PathVariable Integer id) { return contaService.deleteById(id); }
 }
