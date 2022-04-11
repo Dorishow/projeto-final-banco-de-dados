@@ -1,7 +1,5 @@
 package com.santander.banco811.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.santander.banco811.dto.conta.ContaRequest;
 import com.santander.banco811.dto.usuario.UsuarioRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

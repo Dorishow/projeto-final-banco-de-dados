@@ -3,7 +3,6 @@ package com.santander.banco811.controller;
 import com.santander.banco811.dto.usuario.UsuarioRequest;
 import com.santander.banco811.dto.usuario.UsuarioResponse;
 import com.santander.banco811.model.Usuario;
-import com.santander.banco811.projection.UsuarioView;
 import com.santander.banco811.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,11 +61,6 @@ public class UsuarioController {
             @RequestParam(required = false, defaultValue = "1") int qtdElementos
     ){
         return usuarioService.getAllPaginated(pagina, qtdElementos);
-    }
-
-    @GetMapping("/view")
-    public List<UsuarioView> getAllUsuarioView(){
-        return usuarioService.getAllUserView();
     }
 
 }
