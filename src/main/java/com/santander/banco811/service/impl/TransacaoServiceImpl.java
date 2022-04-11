@@ -59,4 +59,9 @@ public class TransacaoServiceImpl implements TransacaoService {
         TransacaoResponse transacaoResponse = new TransacaoResponse(transacaoRepository.save(transacao));
         return transacaoResponse;
     }
+
+    @Override
+    public List<TransacaoResponse> findAll() {
+        return TransacaoResponse.toResponse(transacaoRepository.findAll());
+    }
 }

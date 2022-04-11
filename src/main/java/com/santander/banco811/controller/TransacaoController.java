@@ -6,6 +6,8 @@ import com.santander.banco811.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/transacao")
 public class TransacaoController {
@@ -19,5 +21,10 @@ public class TransacaoController {
             @PathVariable Integer idContaRemetente
     ){
         return transacaoService.create(transacaoRequest, idContaRemetente);
+    }
+
+    @GetMapping
+    public List<TransacaoResponse> listAll(){
+        return transacaoService.findAll();
     }
 }
