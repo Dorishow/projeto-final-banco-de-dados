@@ -14,12 +14,14 @@ import java.util.stream.Collectors;
 @Getter @Setter
 @AllArgsConstructor
 public class TransacaoResponse {
+    private Integer id;
     private BigDecimal valor;
     private TipoTransacao tipoTransacao;
     private Integer agencia;
     private ContaResponse conta;
 
     public TransacaoResponse(Transacao transacao) {
+        this.id = transacao.getId();
         this.valor = transacao.getValor();
         this.tipoTransacao = transacao.getTipoTransacao();
         this.agencia = transacao.getAgencia();
