@@ -5,6 +5,7 @@ import com.santander.banco811.dto.usuario.UsuarioResponse;
 import com.santander.banco811.model.Usuario;
 import com.santander.banco811.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +52,15 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.OK)
     public UsuarioResponse deleteById(@PathVariable Integer id){
         return usuarioService.deleteById(id);
+    }
+
+    @GetMapping("/paginado")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Usuario> getAllPaginated(
+            @RequestParam(required = false, defaultValue = "1") int pagina,
+            @RequestParam(required = false, defaultValue = "2") int qtdElementos
+    ){
+        return usuarioService.getAllPaginated(pagina, qtdElementos);
     }
 
 }

@@ -6,6 +6,9 @@ import com.santander.banco811.model.Usuario;
 import com.santander.banco811.repository.UsuarioRepository;
 import com.santander.banco811.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,14 @@ public class UsarioServiceImpl implements UsuarioService {
     public List<UsuarioResponse> getAll() {
         var usuarios = usuarioRepository.findAll();
         return UsuarioResponse.toResponse(usuarios);
+    }
+
+    @Override
+    public Page<Usuario> getAllPaginated(Integer pagina, Integer qtdElementos) {
+        PageRequest pageRequest = PageRequest.of(
+                pagina, qtdElementos
+        );
+        return usuarioRepository.findAll(pageRequest);
     }
 
     @Override
