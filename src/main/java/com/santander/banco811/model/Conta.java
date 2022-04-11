@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "conta")
 @Entity
@@ -50,6 +51,9 @@ public class Conta {
     @JsonIgnore
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "conta")
+    private List<Transacao> transacoes;
 
     public Conta(ContaRequest contaRequest){
         this.numero = contaRequest.getNumero();

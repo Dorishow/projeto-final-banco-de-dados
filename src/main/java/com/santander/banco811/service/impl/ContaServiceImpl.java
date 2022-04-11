@@ -40,7 +40,10 @@ public class ContaServiceImpl implements ContaService {
     @Override
     public ContaResponse updateById(Integer id, ContaRequest contaRequest) {
         var conta = contaRepository.findById(id).orElseThrow();
-        var usuario = usuarioService.findById(contaRequest.getIdUsuario());
+        var idUsuario = conta.getUsuario().getId();
+        if(contaRequest.getIdUsuario() != null)
+            idUsuario = contaRequest.getIdUsuario();
+        var usuario = usuarioService.findById(idUsuario);
         conta.updateConta(contaRequest, usuario);
         return new ContaResponse(contaRepository.save(conta));
     }
@@ -72,5 +75,10 @@ public class ContaServiceImpl implements ContaService {
 
     public List<ContaView> getAllViewByTipoConta(TipoConta tipoConta){
         return contaRepository.findAllByTipoConta(tipoConta);
+    }
+
+    @Override
+    public Conta findById(Integer id) {
+        return contaRepository.findById(id).orElseThrow();
     }
 }

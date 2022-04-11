@@ -17,4 +17,5 @@ public interface ContaService {
     List<ContaResponse> getByUsuarioCpf(String cpf);
     List<ContaResponse> findByAgenciaAndUsuario_cpf(Integer agencia, String cpf);
     List<ContaView> getAllViewByTipoConta(TipoConta tipoConta);
+    Conta findById(Integer id);
 }
