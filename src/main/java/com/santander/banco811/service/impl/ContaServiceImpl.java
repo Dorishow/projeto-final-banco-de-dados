@@ -3,6 +3,8 @@ package com.santander.banco811.service.impl;
 import com.santander.banco811.dto.conta.ContaRequest;
 import com.santander.banco811.dto.conta.ContaResponse;
 import com.santander.banco811.model.Conta;
+import com.santander.banco811.model.enums.TipoConta;
+import com.santander.banco811.projection.ContaView;
 import com.santander.banco811.repository.ContaRepository;
 import com.santander.banco811.service.ContaService;
 import com.santander.banco811.service.UsuarioService;
@@ -68,5 +70,7 @@ public class ContaServiceImpl implements ContaService {
         return ContaResponse.toResponse(contas);
     }
 
-
+    public List<ContaView> getAllViewByTipoConta(TipoConta tipoConta){
+        return contaRepository.findAllByTipoConta(tipoConta);
+    }
 }

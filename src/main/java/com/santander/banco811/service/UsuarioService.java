@@ -3,6 +3,7 @@ package com.santander.banco811.service;
 import com.santander.banco811.dto.usuario.UsuarioRequest;
 import com.santander.banco811.dto.usuario.UsuarioResponse;
 import com.santander.banco811.model.Usuario;
+import com.santander.banco811.projection.UsuarioView;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
